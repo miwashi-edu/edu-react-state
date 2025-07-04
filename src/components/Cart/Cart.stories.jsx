@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import Cart from './Cart';
+import {Cart,CartWithLocalStorage, CartWithTestStorage} from '.';
+import {LocalStorageDecorator} from '../../decorators';
 
 export default {
   title: 'Components/Cart',
   component: Cart,
 };
 
-const Template = () => {
-  const [items, setItems] = useState([
-    { name: 'Apple', price: 1 },
-    { name: 'Banana', price: 2 },
-  ]);
 
-  const handleRemove = (index) => {
-    setItems(items.filter((_, i) => i !== index));
-  };
+export const Default = {
+}
 
-  return <Cart items={items} onRemove={handleRemove} />;
-};
+export const WithTestStorage = {
+  render: () => <CartWithTestStorage />,
+}
 
-export const Default = Template.bind({});
+export const WithLocalStorage = {
+  render: () => <CartWithLocalStorage />,
+  decorators: [LocalStorageDecorator],
+  parameters: {
+    localStoragePrefix: 'cart',
+  },
+}

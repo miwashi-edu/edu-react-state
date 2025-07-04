@@ -1,4 +1,3 @@
-// ./src/components/Cart/Cart.jsx
 import React, { useState } from 'react';
 import styles from './Cart.module.css';
 
@@ -20,11 +19,15 @@ const Cart = ({ children, items = [], onRemove }) => {
                         {items.map((item, index) => (
                             <li key={index} className={styles.item}>
                                 {item.name} – {item.price}€
-                                <button onClick={() => onRemove(index)} className={styles.remove}>Remove</button>
+                                <button onClick={() => onRemove(index)} className={styles.remove}>
+                                    Remove
+                                </button>
                             </li>
                         ))}
                     </ul>
-                    <button onClick={() => setOpen(false)} className={styles.close}>✖</button>
+                    <button onClick={() => setOpen(false)} className={styles.close}>
+                        ✖
+                    </button>
                 </div>
             )}
         </div>

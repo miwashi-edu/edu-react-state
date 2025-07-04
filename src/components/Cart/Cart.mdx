@@ -1,14 +1,39 @@
-import { Meta, Story, Canvas} from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import Cart from './Cart';
 import * as CartStories from './Cart.stories';
 
 <Meta of={CartStories} />
 
 # Cart
-The `Cart` component displays a list of items and allows item removal.
+The `Cart` component wraps your application content and displays a cart interface that can be toggled or minimized.
 
 <Canvas>
     <Story name="Default">
-        <Cart items={[{ name: 'Apple', price: 1 }, { name: 'Banana', price: 2 }]} onRemove={() => {}} />
+        <Cart items={[{ name: 'Apple', price: 1 }, { name: 'Banana', price: 2 }]} onRemove={() => {}} >
+            <div>Shop content goes here</div>
+        </Cart>
     </Story>
 </Canvas>
+
+## Usage
+
+```jsx
+import withLocalStorage from './withLocalStorage';
+import Cart from './Cart';
+import Shop from '../Shop';
+
+const LocalCart = withLocalStorage(Cart);
+
+const App = () => {
+  const handleAddToCart = (item) => {
+    // Cart receives this through clone injection
+    // and stores item.id via withLocalStorage
+  };
+
+  return (
+    <LocalCart>
+      <Shop onAddToCart={handleAddToCart} />
+    </LocalCart>
+  );
+};
+
