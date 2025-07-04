@@ -1,6 +1,6 @@
 // ./src/components/Items/Item.jsx
 import React from 'react';
-import styles from './Item.module.css';
+import styles from './Items.module.css';
 
 const Item = ({ name, price, onAdd }) => (
     <div className={styles.item}>

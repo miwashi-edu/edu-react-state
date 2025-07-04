@@ -25,3 +25,14 @@ export const WithItem = {
       </Shop>
   ),
 };
+
+export const WithCartAndItem = {
+    decorators: [
+        (Story) => <Cart><Story /></Cart>
+    ],
+    render: () => (
+        <Shop>
+            <Item name="Apple" price={1} onAdd={() => {}} />
+        </Shop>
+    ),
+};
