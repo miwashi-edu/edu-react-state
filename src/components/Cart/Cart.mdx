@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas} from '@storybook/addon-docs/blocks';
+import Cart from './Cart';
+import * as CartStories from './Cart.stories';
+
+<Meta of={CartStories} />
+
+# Cart
+The `Cart` component displays a list of items and allows item removal.
+
+<Canvas>
+    <Story name="Default">
+        <Cart items={[{ name: 'Apple', price: 1 }, { name: 'Banana', price: 2 }]} onRemove={() => {}} />
+    </Story>
+</Canvas>

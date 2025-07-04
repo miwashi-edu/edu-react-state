@@ -1,0 +1,51 @@
+.wrapper {
+  position: relative;
+}
+
+.cartIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cartBox {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  z-index: 10;
+  width: 250px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25rem 0;
+}
+
+.remove {
+  background: #ff6666;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.close {
+  display: block;
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

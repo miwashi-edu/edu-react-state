@@ -1,0 +1,14 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import Shop from './Shop';
+import * as ShopStories from './Shop.stories';
+
+<Meta of={ShopStories} />
+
+# Shop
+The `Shop` component serves as a container for product listings and the cart.
+
+<Canvas>
+    <Story name="Default">
+        <Shop />
+    </Story>
+</Canvas>

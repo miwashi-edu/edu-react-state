@@ -1,0 +1,12 @@
+// ./src/components/Items/Item.jsx
+import React from 'react';
+import styles from './Item.module.css';
+
+const Item = ({ name, price, onAdd }) => (
+    <div className={styles.item}>
+        <span>{name} – {price}€</span>
+        <button onClick={() => onAdd({ name, price })}>Add</button>
+    </div>
+);
+
+export default Item;
