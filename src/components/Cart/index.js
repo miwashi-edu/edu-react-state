@@ -1,6 +1,6 @@
 import Cart from './Cart';
 
-const CART_KEY = 'cart';
+const CART_KEY = 'cart-items';
 import withTestStorage from './withTestStorage';
 import withTransientStorage from './withTransientStorage';
 import withBackend from './withBackend';

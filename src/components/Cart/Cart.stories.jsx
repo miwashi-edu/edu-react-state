@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Cart,CartWithLocalStorage, CartWithTestStorage} from '.';
+import {CART_KEY, Cart,CartWithLocalStorage, CartWithTestStorage} from '.';
 import {LocalStorageDecorator} from '../../decorators';
 
 export default {
@@ -19,6 +19,6 @@ export const WithLocalStorage = {
   render: () => <CartWithLocalStorage />,
   decorators: [LocalStorageDecorator],
   parameters: {
-    localStoragePrefix: 'cart',
+    localStoragePrefix: CART_KEY,
   },
 }
