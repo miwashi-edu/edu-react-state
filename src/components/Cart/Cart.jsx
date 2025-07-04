@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Cart.module.css';
 
-const Cart = ({ children, items = [], onRemove }) => {
-    const [open, setOpen] = useState(false);
-
+const Cart = ({ children, items = [], onRemove, open, setOpen }) => {
     return (
         <div className={styles.wrapper}>
             {children}
