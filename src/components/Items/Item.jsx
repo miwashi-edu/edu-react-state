@@ -5,7 +5,7 @@ import styles from './Items.module.css';
 const Item = ({ name, price, onAdd }) => (
     <div className={styles.item}>
         <span>{name} – {price}€</span>
-        <button onClick={() => onAdd({ name, price })}>Add</button>
+        <button onClick={onAdd}>Add</button>
     </div>
 );
 

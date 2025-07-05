@@ -1,3 +1,4 @@
+// ./src/components/Shop/Shop.jsx
 import React, { useEffect, useState } from 'react';
 import styles from './Shop.module.css';
 

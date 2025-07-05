@@ -6,7 +6,6 @@ const withLocalStorage = (Component) => (props) => {
     const [items, setItems] = useState([]);
     const [open, setOpen] = useState(false);
 
-    // Initial load from localStorage
     useEffect(() => {
         try {
             const stored = localStorage.getItem(key);
@@ -16,14 +15,12 @@ const withLocalStorage = (Component) => (props) => {
         }
     }, []);
 
-    // Write to localStorage when items change
     useEffect(() => {
         try {
             localStorage.setItem(key, JSON.stringify(items));
         } catch {}
     }, [items]);
 
-    // Periodic sync from localStorage (every second)
     useEffect(() => {
         const interval = setInterval(() => {
             try {
@@ -50,10 +47,15 @@ const withLocalStorage = (Component) => (props) => {
             {...props}
             items={items}
             onRemove={handleRemove}
-            onAddToCart={handleAdd}
             open={open}
             setOpen={setOpen}
-        />
+        >
+            {React.Children.map(props.children, (child) =>
+                React.isValidElement(child)
+                    ? React.cloneElement(child, { onAddToCart: handleAdd })
+                    : child
+            )}
+        </Component>
     );
 };
 
