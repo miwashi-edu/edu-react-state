@@ -1,3 +1,4 @@
+// ./src/components/Cart/withTestStorage.jsx
 import React, { useState } from 'react';
 
 const withTestStorage = (Component) => (props) => {
@@ -20,7 +21,13 @@ const withTestStorage = (Component) => (props) => {
             items={items}
             onAddToCart={onAdd}
             onRemove={onRemove}
-        />
+        >
+            {React.Children.map(props.children, (child) =>
+                React.isValidElement(child)
+                    ? React.cloneElement(child, { onAddToCart: onAdd })
+                    : child
+            )}
+        </Component>
     );
 };
 

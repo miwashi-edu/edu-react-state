@@ -45,3 +45,13 @@ export const WithCartAndItemLocalStorage = {
         </CartWithLocalStorage>
     ),
 };
+
+export const WithCartAndItemTestStorage = {
+    render: () => (
+        <CartWithTestStorage>
+            <Shop>
+                <Item />
+            </Shop>
+        </CartWithTestStorage>
+    ),
+};
