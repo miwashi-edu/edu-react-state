@@ -11,11 +11,9 @@ const Cart = ({ children, items = [], onRemove, open: controlledOpen, setOpen: s
     return (
         <div className={styles.wrapper}>
             {children}
-
             {!open ? (
                 <button onClick={() => setOpen(true)} className={styles.cartIcon}>
-                    🛒
-                    {items.length > 0 && <span className={styles.count}>({items.length})</span>}
+                    🛒 {items.length > 0 && <span className={styles.count}>({items.length})</span>}
                 </button>
             ) : (
                 <div className={styles.cartBox}>
@@ -30,9 +28,7 @@ const Cart = ({ children, items = [], onRemove, open: controlledOpen, setOpen: s
                             </li>
                         ))}
                     </ul>
-                    <button onClick={() => setOpen(false)} className={styles.close}>
-                        ✖
-                    </button>
+                    <button onClick={() => setOpen(false)} className={styles.close}>✖</button>
                 </div>
             )}
         </div>
