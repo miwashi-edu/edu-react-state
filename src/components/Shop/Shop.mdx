@@ -7,8 +7,66 @@ import * as ShopStories from './Shop.stories';
 # Shop
 The `Shop` component serves as a container for product listings and the cart.
 
+```jsx
+<Shop />
+```
+
 <Canvas>
     <Story name="Default">
         <Shop />
+    </Story>
+</Canvas>
+
+## With Test Storage
+
+```jsx
+import {Shop} from "./components/Shop";
+import {CartWithTestStorage} from "./components/Cart";
+<CartWithTestStorage>
+    <Shop>
+        <Item />
+    </Shop>
+</CartWithTestStorage>
+```
+
+## With local storage
+
+```jsx
+import {Shop} from "./components/Shop";
+import {CartWithLocalStorage} from "./components/Cart";
+<CartWithLocalStorage>
+    <Shop>
+        <Item />
+    </Shop>
+</CartWithLocalStorage>
+```
+
+## With backend storage
+
+```jsx
+import {Shop} from "./components/Shop";
+import {CartWithBackend} from "./components/Cart";
+<CartWithBackend>
+    <Shop>
+        <Item />
+    </Shop>
+</CartWithBackend>
+```
+
+## With different Item
+
+```jsx
+import {Shop} from "./components/Shop";
+import {CartWithBackend} from "./components/Cart";
+<CartWithBackend>
+    <Shop>
+        <ItemWithImage />
+    </Shop>
+</CartWithBackend>
+```
+
+<Canvas>
+    <Story name="With Test Storage">
+        <ShopStories.WithCartAndItem />
     </Story>
 </Canvas>
