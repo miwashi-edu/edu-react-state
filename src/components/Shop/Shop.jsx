@@ -21,9 +21,14 @@ const Shop = ({ children, onAddToCart }) => {
                     const label = item.name ?? item.title;
                     if (!label || !React.isValidElement(children)) return null;
 
+                    const cloned = React.cloneElement(children, {
+                        ...item,
+                        onAdd: () => onAddToCart(item)
+                    });
+
                     return (
                         <div key={index} className={styles.itemWrapper}>
-                            {React.cloneElement(children, { ...item, onAdd: onAddToCart })}
+                            {cloned}
                         </div>
                     );
                 })}

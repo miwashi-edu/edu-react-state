@@ -1,1 +1,5 @@
-export { default } from './Shop';
+import Shop from './Shop.jsx';
+
+export {
+    Shop
+}

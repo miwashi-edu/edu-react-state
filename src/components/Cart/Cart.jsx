@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Cart.module.css';
 
-const Cart = ({ children, items = [], onRemove, open, setOpen }) => {
+const Cart = ({ children, items = [], onRemove, open: controlledOpen, setOpen: setControlledOpen }) => {
+    const isControlled = controlledOpen !== undefined && setControlledOpen !== undefined;
+    const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
+
+    const open = isControlled ? controlledOpen : uncontrolledOpen;
+    const setOpen = isControlled ? setControlledOpen : setUncontrolledOpen;
+
     return (
         <div className={styles.wrapper}>
             {children}
@@ -9,6 +15,7 @@ const Cart = ({ children, items = [], onRemove, open, setOpen }) => {
             {!open ? (
                 <button onClick={() => setOpen(true)} className={styles.cartIcon}>
                     🛒
+                    {items.length > 0 && <span className={styles.count}>({items.length})</span>}
                 </button>
             ) : (
                 <div className={styles.cartBox}>

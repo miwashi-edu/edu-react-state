@@ -1,38 +1,47 @@
 import React from 'react';
-import Shop from './Shop';
-import Cart from '../Cart';
+import { Shop } from '.';
+import { CartWithTestStorage, CartWithLocalStorage } from '../Cart';
 import { Item } from '../Items';
+import {LocalStorageDecorator} from '../../decorators';
 
 export default {
-  title: 'Components/Shop',
-  component: Shop,
+    title: 'Components/Shop',
+    component: Shop,
 };
 
 export const Default = {
-
+    render: () => <Shop />,
 };
 
 export const WithCart = {
-  decorators: [
-    (Story) => <Cart><Story /></Cart>
-  ],
+    render: () => <CartWithTestStorage><Shop /></CartWithTestStorage>,
 };
 
 export const WithItem = {
-  render: () => (
-      <Shop>
-        <Item name="Apple" price={1} onAdd={() => {}} />
-      </Shop>
-  ),
+    render: () => (
+        <Shop>
+            <Item />
+        </Shop>
+    ),
 };
 
 export const WithCartAndItem = {
-    decorators: [
-        (Story) => <Cart><Story /></Cart>
-    ],
     render: () => (
-        <Shop>
-            <Item name="Apple" price={1} onAdd={() => {}} />
-        </Shop>
+        <CartWithTestStorage>
+            <Shop>
+                <Item />
+            </Shop>
+        </CartWithTestStorage>
+    ),
+};
+
+export const WithCartAndItemLocalStorage = {
+    decorators:[LocalStorageDecorator],
+    render: () => (
+        <CartWithLocalStorage>
+            <Shop>
+                <Item />
+            </Shop>
+        </CartWithLocalStorage>
     ),
 };
