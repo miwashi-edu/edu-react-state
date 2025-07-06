@@ -5,17 +5,22 @@ import * as CartStories from './Cart.stories';
 <Meta of={CartStories} />
 
 # Cart
-The `Cart` component wraps your application content and displays a cart interface that can be toggled or minimized.
+
+The `Cart` component wraps your application content and provides a shopping cart interface with toggle and remove functionality. It supports both controlled and uncontrolled modes for cart visibility and delegates item management through props.
 
 <Canvas>
-    <Story name="Default">
-        <Cart items={[{ name: 'Apple', price: 1 }, { name: 'Banana', price: 2 }]} onRemove={() => {}} >
-            <div>Shop content goes here</div>
-        </Cart>
-    </Story>
+  <Story name="Default">
+    <Cart items={[{ name: 'Apple', price: 1 }, { name: 'Banana', price: 2 }]} onRemove={() => {}}>
+      <div>Shop content goes here</div>
+    </Cart>
+  </Story>
 </Canvas>
 
-## Usage
+## Usage with HOC
+
+The `Cart` is not stateful by default. State and persistence are delegated to Higher-Order Components (HOCs). Each HOC wraps `Cart` and injects `items`, `onRemove`, and optionally `open`, `setOpen`, and `onAddToCart` (passed to children).
+
+### Local Storage
 
 ```jsx
 import withLocalStorage from './withLocalStorage';
@@ -24,16 +29,58 @@ import Shop from '../Shop';
 
 const LocalCart = withLocalStorage(Cart);
 
-const App = () => {
-  const handleAddToCart = (item) => {
-    // Cart receives this through clone injection
-    // and stores item.id via withLocalStorage
-  };
+<LocalCart>
+  <Shop />
+</LocalCart>
+```
 
-  return (
-    <LocalCart>
-      <Shop onAddToCart={handleAddToCart} />
-    </LocalCart>
-  );
-};
+### Backend Storage
 
+```jsx
+import withBackend from './withBackend';
+import Cart from './Cart';
+import Shop from '../Shop';
+
+const BackendCart = withBackend(Cart);
+
+<BackendCart>
+  <Shop />
+</BackendCart>
+```
+
+### Transient (Memory) Storage
+
+```jsx
+import withTransientStorage from './withTransientStorage';
+import Cart from './Cart';
+import Shop from '../Shop';
+
+const MemoryCart = withTransientStorage(Cart);
+
+<MemoryCart>
+  <Shop />
+</MemoryCart>
+```
+
+### Test Storage (Static Initial Data)
+
+```jsx
+import withTestStorage from './withTestStorage';
+import Cart from './Cart';
+import Shop from '../Shop';
+
+const TestCart = withTestStorage(Cart);
+
+<TestCart>
+  <Shop />
+</TestCart>
+```
+
+## Prop Injection
+
+Each HOC injects `onAddToCart` into children via `React.cloneElement`. This allows components like `Shop` to use a standard API regardless of the storage backend.
+
+## Notes
+
+- The cart can be **controlled** using `open`/`setOpen` or **uncontrolled** using internal state.
+- Removal uses `onRemove(index)`; items must be stored with a consistent order.

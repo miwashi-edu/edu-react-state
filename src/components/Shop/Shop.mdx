@@ -1,72 +1,90 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
-import {Shop} from '.';
+import { Shop } from '.';
 import * as ShopStories from './Shop.stories';
 
 <Meta of={ShopStories} />
 
 # Shop
-The `Shop` component serves as a container for product listings and the cart.
 
-```jsx
-<Shop />
-```
+The `Shop` component is a container that loads products and renders an item layout. It expects a single child component (typically `Item`) which is cloned and enriched with product data and an `onAdd` callback.
+
+## Data Fetching
+
+Products are fetched from `/api/products.json`. If no products are returned, the shop shows an empty state.
+
+## Cloning and Injection
+
+Each product is passed to a clone of the single `children` element with:
+
+- `...product` (spread)
+- `onAdd`: calls `onAddToCart(product)`
+
+This allows wrapping containers like `CartWithStorage` to manage cart logic via prop injection.
 
 <Canvas>
-    <Story name="Default">
-        <Shop />
-    </Story>
+  <Story name="Default">
+    <Shop />
+  </Story>
 </Canvas>
 
-## With Test Storage
+## With Cart and Item
+
+This setup demonstrates interaction between `Shop`, `Cart`, and `Item` using a higher-order cart wrapper.
 
 ```jsx
-import {Shop} from "./components/Shop";
-import {CartWithTestStorage} from "./components/Cart";
+import { Shop } from './components/Shop';
+import { CartWithTestStorage } from './components/Cart';
+import { Item } from './components/Items';
+
 <CartWithTestStorage>
-    <Shop>
-        <Item />
-    </Shop>
+  <Shop>
+    <Item />
+  </Shop>
 </CartWithTestStorage>
 ```
 
-## With local storage
+<Canvas>
+  <Story name="With Test Storage">
+    <ShopStories.WithCartAndItem />
+  </Story>
+</Canvas>
+
+## Other Storage Examples
+
+### Local Storage
 
 ```jsx
-import {Shop} from "./components/Shop";
-import {CartWithLocalStorage} from "./components/Cart";
+import { CartWithLocalStorage } from './components/Cart';
+
 <CartWithLocalStorage>
-    <Shop>
-        <Item />
-    </Shop>
+  <Shop>
+    <Item />
+  </Shop>
 </CartWithLocalStorage>
 ```
 
-## With backend storage
+### Backend Storage
 
 ```jsx
-import {Shop} from "./components/Shop";
-import {CartWithBackend} from "./components/Cart";
+import { CartWithBackend } from './components/Cart';
+
 <CartWithBackend>
-    <Shop>
-        <Item />
-    </Shop>
+  <Shop>
+    <Item />
+  </Shop>
 </CartWithBackend>
 ```
 
-## With different Item
+## Custom Item Component
+
+You may swap in a more detailed item view:
 
 ```jsx
-import {Shop} from "./components/Shop";
-import {CartWithBackend} from "./components/Cart";
-<CartWithBackend>
-    <Shop>
-        <ItemWithImage />
-    </Shop>
-</CartWithBackend>
-```
+import { ItemWithImage } from './components/Items';
 
-<Canvas>
-    <Story name="With Test Storage">
-        <ShopStories.WithCartAndItem />
-    </Story>
-</Canvas>
+<CartWithTestStorage>
+  <Shop>
+    <ItemWithImage />
+  </Shop>
+</CartWithTestStorage>
+```

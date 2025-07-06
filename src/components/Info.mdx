@@ -1,7 +1,25 @@
-import React from 'react';
-//import { Meta } from '@storybook/blocks';
-import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Reference/Info" />
+<Meta title="Architecture Overview" />
 
-# State Handling
+# Architecture Overview
+
+This project is structured around composable components with injected behavior using Higher-Order Components (HOCs). The core flow links `Shop`, `Item`, and `Cart` via prop-based contract and `cloneElement` composition.
+
+---
+
+## Components
+
+### `Cart`
+
+- Renders a floating cart interface
+- Can be **controlled** (`open`, `setOpen`) or **uncontrolled** (internal state)
+- Requires:
+- `items` array
+- `onRemove(index)`
+- Optionally injects `onAddToCart(item)` into children
+
+```jsx
+<Cart items={...} onRemove={...}>
+  <Shop />
+</Cart>
