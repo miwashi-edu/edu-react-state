@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import Item from './Item';
+import * as ItemStories from './Item.stories';
+
+<Meta of={ItemStories} />
+
+# Item
+
+The `Item` component is a **pure presentational component** that displays a product's `name` and `price`, and offers an "Add" button. It is intended to be enhanced via HOC (e.g. `withItemData`) to receive logic and data.
+
+<Canvas>
+    <Story name="Default">
+        <Item name="Apple" price={1} onAdd={() => {}} />
+    </Story>
+</Canvas>
+
+## Props
+
+| Prop   | Type     | Description                         |
+|--------|----------|-------------------------------------|
+| name   | `string` | Name of the product                 |
+| price  | `number` | Price of the product in euros       |
+| onAdd  | `func`   | Triggered when the user clicks "Add" |
+
+## Usage Example
+
+```jsx
+<Item name="Banana" price={2} onAdd={() => alert("Added!")} />

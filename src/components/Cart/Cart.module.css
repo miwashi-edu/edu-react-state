@@ -1,7 +1,9 @@
+/* === CartWrapper === */
 .wrapper {
   position: relative;
 }
 
+/* === CartButton.atom === */
 .cartIcon {
   position: absolute;
   top: 1rem;
@@ -12,6 +14,11 @@
   cursor: pointer;
 }
 
+.count {
+  margin-left: 0.25rem;
+}
+
+/* === CartBox.molecule === */
 .cartBox {
   position: absolute;
   top: 1rem;
@@ -29,6 +36,15 @@
   padding: 0;
 }
 
+.close {
+  display: block;
+  margin-top: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* === CartItem.molecule === */
 .item {
   display: flex;
   justify-content: space-between;
@@ -38,14 +54,6 @@
 .remove {
   background: #ff6666;
   color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.close {
-  display: block;
-  margin-top: 1rem;
-  background: none;
   border: none;
   cursor: pointer;
 }

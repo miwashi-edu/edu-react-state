@@ -1,4 +1,15 @@
-import Item  from './Item';
-import ItemWithImage from "./ItemWithImage";
+import Item from './Item';
+import withBasicItemData from './withBasicItemData';
+import withImageItemData from './withImageItemData.jsx';
+import withLabeledItemData from './withLabeledItemData';
 
-export {Item, ItemWithImage};
+const ItemWithData = withBasicItemData(Item);
+const ItemWithLabel = withLabeledItemData(Item);
+const ItemWithImage = withImageItemData(Item);
+
+export {
+    Item,
+    ItemWithData,
+    ItemWithLabel,
+    withImageItemData,
+};

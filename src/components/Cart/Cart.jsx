@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styles from './Cart.module.css';
+import CartButton from './CartButton.atom';
+import CartBox from './CartBox.molecule';
 
-const Cart = ({ children, items = [], onRemove, open: controlledOpen, setOpen: setControlledOpen }) => {
+const Cart = ({children, items = [], onRemove, open: controlledOpen, setOpen: setControlledOpen}) => {
     const isControlled = controlledOpen !== undefined && setControlledOpen !== undefined;
     const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
 
@@ -12,24 +14,9 @@ const Cart = ({ children, items = [], onRemove, open: controlledOpen, setOpen: s
         <div className={styles.wrapper}>
             {children}
             {!open ? (
-                <button onClick={() => setOpen(true)} className={styles.cartIcon}>
-                    🛒 {items.length > 0 && <span className={styles.count}>({items.length})</span>}
-                </button>
+                <CartButton count={items.length} onClick={() => setOpen(true)} />
             ) : (
-                <div className={styles.cartBox}>
-                    <h2>Cart</h2>
-                    <ul className={styles.list}>
-                        {items.map((item, index) => (
-                            <li key={index} className={styles.item}>
-                                {item.name} – {item.price}€
-                                <button onClick={() => onRemove(index)} className={styles.remove}>
-                                    Remove
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                    <button onClick={() => setOpen(false)} className={styles.close}>✖</button>
-                </div>
+                <CartBox items={items} onRemove={onRemove} onClose={() => setOpen(false)} />
             )}
         </div>
     );

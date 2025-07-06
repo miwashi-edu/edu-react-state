@@ -1,5 +1,5 @@
 const withBackend = (Component) => (props) => {
-    const [items, setItems] = useRemoteCart(); // your custom hook
+    const [items, setItems] = useRemoteCart();
     return <Component {...props} items={items} onRemove={removeItemFromBackend} />;
 };
 

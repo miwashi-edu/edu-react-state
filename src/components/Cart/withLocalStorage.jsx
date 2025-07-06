@@ -1,4 +1,3 @@
-// ./src/components/Cart/withLocalStorage.jsx
 import React, { useState, useEffect } from 'react';
 
 const withLocalStorage = (Component) => (props) => {
