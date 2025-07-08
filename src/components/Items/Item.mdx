@@ -24,5 +24,10 @@ The `Item` component is a **pure presentational component** that displays a prod
 
 ## Usage Example
 
+// In a real application, the onAdd handler would usually be injected by a parent component or HOC.
+// This allows the Item to remain agnostic of where its data and logic come from.
+
 ```jsx
 <Item name="Banana" price={2} onAdd={() => alert("Added!")} />
+
+```

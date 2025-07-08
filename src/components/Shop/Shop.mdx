@@ -27,9 +27,16 @@ This allows wrapping containers like `CartWithStorage` to manage cart logic via 
   </Story>
 </Canvas>
 
+// ---
+// The Shop component is designed to be agnostic of cart state and logic.
+// It focuses solely on displaying products and handling UI interactions.
+// Cart logic is provided by parent components or HOCs, keeping Shop clean and reusable.
+// ---
+
 ## With Cart and Item
 
-This setup demonstrates interaction between `Shop`, `Cart`, and `Item` using a higher-order cart wrapper.
+// In this example, the CartWithTestStorage HOC wraps Shop and provides all cart logic.
+// Shop only needs to know how to call onAdd when a product is added.
 
 ```jsx
 import { Shop } from './components/Shop';
@@ -48,6 +55,9 @@ import { Item } from './components/Items';
     <ShopStories.WithCartAndItem />
   </Story>
 </Canvas>
+
+// The following examples show how different HOCs can provide cart logic using various storage mechanisms.
+// This demonstrates the flexibility and composability of the HOC pattern.
 
 ## Other Storage Examples
 

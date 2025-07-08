@@ -1,7 +1,7 @@
 import React from 'react';
 import { Shop } from '.';
 import { CartWithTestStorage, CartWithLocalStorage } from '../Cart';
-import { Item } from '../Items';
+import { Item, ItemWithImage } from '../Items';
 import {LocalStorageDecorator} from '../../decorators';
 
 export default {

@@ -16,11 +16,18 @@ The `Cart` component wraps your application content and provides a shopping cart
   </Story>
 </Canvas>
 
+// ---
+// This Cart component is intentionally stateless. All cart state and logic are injected via Higher-Order Components (HOCs).
+// This design is for educational purposes, to demonstrate how HOCs can manage state and inject it into presentational components.
+// ---
 ## Usage with HOC
 
-The `Cart` is not stateful by default. State and persistence are delegated to Higher-Order Components (HOCs). Each HOC wraps `Cart` and injects `items`, `onRemove`, and optionally `open`, `setOpen`, and `onAddToCart` (passed to children).
+// Each HOC below manages the cart's state using a different storage mechanism (local, backend, memory, or test data).
+// The HOC wraps the Cart and injects state and handlers as props, keeping Cart itself stateless and reusable.
 
 ### Local Storage
+
+// withLocalStorage manages cart state in the browser's local storage and injects it into Cart.
 
 ```jsx
 import withLocalStorage from './withLocalStorage';
@@ -36,6 +43,8 @@ const LocalCart = withLocalStorage(Cart);
 
 ### Backend Storage
 
+// withBackend manages cart state by syncing with a backend API and injects it into Cart.
+
 ```jsx
 import withBackend from './withBackend';
 import Cart from './Cart';
@@ -49,6 +58,8 @@ const BackendCart = withBackend(Cart);
 ```
 
 ### Transient (Memory) Storage
+
+// withTransientStorage manages cart state in memory (not persisted) and injects it into Cart.
 
 ```jsx
 import withTransientStorage from './withTransientStorage';
@@ -64,6 +75,8 @@ const MemoryCart = withTransientStorage(Cart);
 
 ### Test Storage (Static Initial Data)
 
+// withTestStorage provides static test data for the cart, useful for demos and testing.
+
 ```jsx
 import withTestStorage from './withTestStorage';
 import Cart from './Cart';
@@ -78,7 +91,8 @@ const TestCart = withTestStorage(Cart);
 
 ## Prop Injection
 
-Each HOC injects `onAddToCart` into children via `React.cloneElement`. This allows components like `Shop` to use a standard API regardless of the storage backend.
+// HOCs use React.cloneElement to inject the onAddToCart handler into children, allowing any child (like Shop) to interact with the cart without knowing about its implementation.
+// This pattern keeps components decoupled and focused on their own responsibilities.
 
 ## Notes
 
